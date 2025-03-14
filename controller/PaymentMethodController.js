@@ -1,0 +1,1 @@
+const PaymentMethod = require('../model/PaymentMethodSchema');
