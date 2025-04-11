@@ -39,7 +39,7 @@ app.use('/api/v1/bookmarks',ProductRoute);
 app.use('/api/v1/bookmarks',RefundRoute);
 app.use('/api/v1/bookmarks',ReviewRoute);
 app.use('/api/v1/roles',RoleRoute);
-app.use('/api/v1/bookmarks',UserRoute);
+app.use('/api/v1/users',UserRoute);
 app.use('/api/v1/bookmarks',VoucherDetailsRoute);
 app.use('/api/v1/bookmarks',VoucherRoute);
 
