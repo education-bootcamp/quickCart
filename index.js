@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors')
 require('dotenv').config();
 const PORT = process.env.PORT | 3000;
 
@@ -21,6 +22,8 @@ const VoucherRoute = require('./route/VoucherRoute');
 
 const app = express();
 app.use(bodyParser.json());
+
+app.use(cors())
 
 mongoose.connect('mongodb://127.0.0.1:27017/quick_cart_db').then(()=>{
     console.log('database connected!')

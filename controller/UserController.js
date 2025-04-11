@@ -14,6 +14,7 @@ const registerUser = async (req, resp) => {
        if (existingUser) {
            return resp.status(409).json({message: 'username is already exists!'});
        }
+       console.log(username, displayName, password, roles, isActive)
        const salt =  bcrypt.genSaltSync(10);
        const hashedPassword =  bcrypt.hashSync(password, salt);
 
@@ -44,14 +45,19 @@ const registerUser = async (req, resp) => {
 const verifyOtp = async (req, resp) => {
     try{
         const {username, otp} = req.body;
-        const existingUser = await User.findOne();
+        const existingUser = await User.findOne({username});
         if (!existingUser) {
             return resp.status(409).json({message: 'username is not found!'});
         }
+        if(existingUser.otp==otp){
+            await User.findOneAndUpdate({username},{
+                isActive:true
+            });
+        }else{
+            return resp.status(404).json({message: 'otp is wrong!'});
+        }
 
-        await User.findOneAndUpdate({username},{
-            isActive:true
-        });
+
 
 
         const msg ={
